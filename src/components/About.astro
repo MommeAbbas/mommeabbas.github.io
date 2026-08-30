@@ -1,0 +1,68 @@
+---
+import ProfileLinks from './ProfileLinks.astro';
+---
+
+<section id="about" class="about">
+  <div class="about-side">
+    <img
+      src="/square-image.jpg"
+      alt="Profile photo of Mohammed Abbas"
+      width="140"
+      height="140"
+    />
+    <ProfileLinks />
+  </div>
+  <div class="about-text">
+    <h1>Mohammed Abbas</h1>
+    <p>
+      I'm a Master's student in Robotics and Autonomous Systems at KTH Royal
+      Institute of Technology in Stockholm, where I also studied Electrical
+      Engineering at the bachelor's level. I conducted my bachelor's thesis
+      under Prof. <a href="https://www.kth.se/profile/oech">Tobias Oechtering</a>.
+    </p>
+    <p>
+      I conduct research at the KTH Robotics, Perception and Learning (RPL)
+      lab. My research focuses on spatial intelligence, state estimation and
+      control. I am particularly interested in building and improving world
+      models.
+    </p>
+  </div>
+</section>
+
+<style>
+  .about {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .about-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .about-side img {
+    display: block;
+    width: 140px;
+    height: 140px;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 1px solid var(--color-border);
+  }
+
+  .about-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 32rem) {
+    .about {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-3);
+    }
+  }
+</style>

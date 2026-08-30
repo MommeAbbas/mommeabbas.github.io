@@ -1,0 +1,122 @@
+---
+import { getCollection } from 'astro:content';
+
+const items = (await getCollection('research')).sort(
+  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
+);
+---
+
+<section id="research">
+  <h2>Research</h2>
+  <ul class="research-list">
+    {
+      items.map(({ data }) => (
+        <li class="research-item">
+          {data.image && (
+            <img src={data.image} alt={data.title} class="research-image" />
+          )}
+          <h3>{data.title}</h3>
+          {(data.period || data.status) && (
+            <p class="text-muted small meta">
+              {data.period}
+              {data.period && data.status ? ' · ' : ''}
+              {data.status}
+            </p>
+          )}
+          {data.collaborators && (
+            <p class="text-muted small">{data.collaborators}</p>
+          )}
+          <p>{data.description}</p>
+          <p class="links">
+            {data.codeUrl ? (
+              <a href={data.codeUrl} class="link-button">
+                Code
+              </a>
+            ) : (
+              <span class="link-button" aria-disabled="true">
+                Code
+              </span>
+            )}
+            {data.paperUrl ? (
+              <a href={data.paperUrl} class="link-button">
+                Paper
+              </a>
+            ) : (
+              <span class="link-button" aria-disabled="true">
+                Paper
+              </span>
+            )}
+          </p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .research-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .research-item {
+    margin-bottom: var(--space-4);
+    display: flow-root;
+  }
+
+  .research-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .meta {
+    font-family: var(--font-sans);
+    margin-bottom: 0.15rem;
+  }
+
+  .research-image {
+    float: right;
+    width: 140px;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+    margin: 0.15rem 0 0.75rem 1rem;
+  }
+
+  @media (max-width: 32rem) {
+    .research-image {
+      float: none;
+      display: block;
+      width: 100%;
+      max-width: 260px;
+      margin: 0 0 var(--space-2);
+    }
+  }
+
+  .links {
+    display: flex;
+    gap: 0.6rem;
+    font-family: var(--font-sans);
+    margin-top: var(--space-1);
+  }
+
+  .link-button {
+    display: inline-block;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.7rem;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  a.link-button:hover {
+    border-color: var(--color-text-muted);
+    color: var(--color-link-hover);
+  }
+
+  span.link-button {
+    color: var(--color-border);
+    cursor: default;
+  }
+</style>
