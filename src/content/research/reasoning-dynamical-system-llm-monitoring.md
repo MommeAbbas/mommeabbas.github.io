@@ -4,6 +4,7 @@ period: "Nov 2025 – Jul 2026"
 status: "Accepted at ICML AI4Math Workshop 2026"
 collaborators: "Sole author"
 paperUrl: "https://openreview.net/forum?id=4Jgmkx0HvH"
+codeUrl: "https://github.com/MommeAbbas/latent-reasoning-tracking"
 image: "/icml.jpg"
 description: >
   Modeled LLM reasoning as a Switching Linear Dynamical System with three
