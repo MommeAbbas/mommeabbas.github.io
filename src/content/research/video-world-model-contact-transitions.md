@@ -1,7 +1,9 @@
 ---
 title: "Predictive Sensitivity Across Contact Transitions in a Video World Model"
 period: "May 2026 – Present"
-status: "Under review"
+status: "Accepted at NeurIPS PhysUnderstand Workshop 2026"
+paperUrl: "https://openreview.net/forum?id=gVEyYKFVac"
+codeUrl: "https://github.com/MommeAbbas/video-world-model-contact-sensitivity"
 description: >
   Developed a simulator-grounded causal evaluation framework for iVideoGPT,
   measuring predictive sensitivity to controlled physical state perturbations
