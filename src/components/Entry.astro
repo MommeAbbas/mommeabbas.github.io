@@ -9,6 +9,7 @@ interface Props {
   video?: string;
   codeUrl?: string;
   paperUrl?: string;
+  url?: string;
   showPaper?: boolean;
 }
 
@@ -22,6 +23,7 @@ const {
   video,
   codeUrl,
   paperUrl,
+  url,
   showPaper = true,
 } = Astro.props;
 ---
@@ -33,7 +35,7 @@ const {
       <video src={video} class="entry-media" autoplay loop muted playsinline />
     )
   }
-  <h3>{title}</h3>
+  <h3>{url ? <a href={url}>{title}</a> : title}</h3>
   {
     (period || status) && (
       <p class="text-muted small meta">

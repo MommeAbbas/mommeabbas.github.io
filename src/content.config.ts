@@ -14,6 +14,8 @@ const entryFields = {
   // Short, silent, looping clip (e.g. an mp4) shown in place of `image`.
   video: z.string().optional(),
   codeUrl: z.string().url().optional(),
+  // Makes the title a link, e.g. to an event or organisation page.
+  url: z.string().url().optional(),
   // Lower numbers are displayed first.
   order: z.number().optional(),
 };

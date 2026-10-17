@@ -2,6 +2,7 @@
 title: "Unite! Research School 2026"
 period: "May 2026"
 collaborators: "Turin and Oropa, Italy"
+url: "https://www.unite-university.eu/"
 description: >
   One of 20 students KTH nominated to attend the
   Unite! Research School, a Blended Intensive Programme organised by
