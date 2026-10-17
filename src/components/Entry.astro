@@ -1,0 +1,127 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  period?: string;
+  status?: string;
+  collaborators?: string;
+  image?: string;
+  video?: string;
+  codeUrl?: string;
+  paperUrl?: string;
+  showPaper?: boolean;
+}
+
+const {
+  title,
+  description,
+  period,
+  status,
+  collaborators,
+  image,
+  video,
+  codeUrl,
+  paperUrl,
+  showPaper = true,
+} = Astro.props;
+---
+
+<li class="entry">
+  {image && <img src={image} alt={title} class="entry-media" />}
+  {
+    video && (
+      <video src={video} class="entry-media" autoplay loop muted playsinline />
+    )
+  }
+  <h3>{title}</h3>
+  {
+    (period || status) && (
+      <p class="text-muted small meta">
+        {period}
+        {period && status ? ' · ' : ''}
+        {status}
+      </p>
+    )
+  }
+  {collaborators && <p class="text-muted small">{collaborators}</p>}
+  <p>{description}</p>
+  <p class="links">
+    {
+      codeUrl ? (
+        <a href={codeUrl} class="link-button">Code</a>
+      ) : (
+        <span class="link-button" aria-disabled="true">Code</span>
+      )
+    }
+    {
+      showPaper &&
+        (paperUrl ? (
+          <a href={paperUrl} class="link-button">Paper</a>
+        ) : (
+          <span class="link-button" aria-disabled="true">Paper</span>
+        ))
+    }
+  </p>
+</li>
+
+<style>
+  .entry {
+    margin-bottom: var(--space-4);
+    display: flow-root;
+  }
+
+  .entry:last-child {
+    margin-bottom: 0;
+  }
+
+  .meta {
+    font-family: var(--font-sans);
+    margin-bottom: 0.15rem;
+  }
+
+  .entry-media {
+    float: right;
+    width: 140px;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+    margin: 0.15rem 0 0.75rem 1rem;
+  }
+
+  @media (max-width: 32rem) {
+    .entry-media {
+      float: none;
+      display: block;
+      width: 100%;
+      max-width: 260px;
+      margin: 0 0 var(--space-2);
+    }
+  }
+
+  .links {
+    display: flex;
+    gap: 0.6rem;
+    font-family: var(--font-sans);
+    margin-top: var(--space-1);
+  }
+
+  .link-button {
+    display: inline-block;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.7rem;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  a.link-button:hover {
+    border-color: var(--color-text-muted);
+    color: var(--color-link-hover);
+  }
+
+  span.link-button {
+    color: var(--color-border);
+    cursor: default;
+  }
+</style>

@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import Entry from './Entry.astro';
+
+const items = (await getCollection('projects')).sort(
+  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
+);
+---
+
+<section id="projects">
+  <h2>Projects</h2>
+  <ul class="entry-list">
+    {items.map(({ data }) => <Entry {...data} showPaper={false} />)}
+  </ul>
+</section>
+
+<style>
+  .entry-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+</style>

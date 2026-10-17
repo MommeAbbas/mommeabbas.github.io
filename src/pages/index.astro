@@ -2,10 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import About from '../components/About.astro';
 import Research from '../components/Research.astro';
+import Projects from '../components/Projects.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <About />
   <Research />
+  <Projects />
 </BaseLayout>
