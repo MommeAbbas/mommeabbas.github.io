@@ -15,6 +15,8 @@ const research = defineCollection({
     // e.g. "Graduate Researcher, KTH RPL" or "Sole author"
     collaborators: z.string().optional(),
     image: z.string().optional(),
+    // Short, silent, looping clip (e.g. an mp4) shown in place of `image`.
+    video: z.string().optional(),
     codeUrl: z.string().url().optional(),
     paperUrl: z.string().url().optional(),
     // Lower numbers are displayed first; falls back to file order.

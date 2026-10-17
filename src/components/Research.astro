@@ -15,6 +15,16 @@ const items = (await getCollection('research')).sort(
           {data.image && (
             <img src={data.image} alt={data.title} class="research-image" />
           )}
+          {data.video && (
+            <video
+              src={data.video}
+              class="research-image"
+              autoplay
+              loop
+              muted
+              playsinline
+            />
+          )}
           <h3>{data.title}</h3>
           {(data.period || data.status) && (
             <p class="text-muted small meta">
