@@ -10,7 +10,8 @@ interface Props {
   codeUrl?: string;
   paperUrl?: string;
   url?: string;
-  showPaper?: boolean;
+  // When true, Code and Paper always render, greyed out if missing.
+  alwaysShowLinks?: boolean;
 }
 
 const {
@@ -24,8 +25,13 @@ const {
   codeUrl,
   paperUrl,
   url,
-  showPaper = true,
+  alwaysShowLinks = true,
 } = Astro.props;
+
+const links = [
+  { label: 'Code', href: codeUrl },
+  { label: 'Paper', href: paperUrl },
+].filter((link) => alwaysShowLinks || link.href);
 ---
 
 <li class="entry">
@@ -47,23 +53,19 @@ const {
   }
   {collaborators && <p class="text-muted small">{collaborators}</p>}
   <p>{description}</p>
-  <p class="links">
-    {
-      codeUrl ? (
-        <a href={codeUrl} class="link-button">Code</a>
-      ) : (
-        <span class="link-button" aria-disabled="true">Code</span>
-      )
-    }
-    {
-      showPaper &&
-        (paperUrl ? (
-          <a href={paperUrl} class="link-button">Paper</a>
-        ) : (
-          <span class="link-button" aria-disabled="true">Paper</span>
-        ))
-    }
-  </p>
+  {
+    links.length > 0 && (
+      <p class="links">
+        {links.map(({ label, href }) =>
+          href ? (
+            <a href={href} class="link-button">{label}</a>
+          ) : (
+            <span class="link-button" aria-disabled="true">{label}</span>
+          )
+        )}
+      </p>
+    )
+  }
 </li>
 
 <style>

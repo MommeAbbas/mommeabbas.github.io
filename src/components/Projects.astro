@@ -10,7 +10,7 @@ const items = (await getCollection('projects')).sort(
 <section id="projects">
   <h2>Projects</h2>
   <ul class="entry-list">
-    {items.map(({ data }) => <Entry {...data} showPaper={false} />)}
+    {items.map(({ data }) => <Entry {...data} alwaysShowLinks={false} />)}
   </ul>
 </section>
 
